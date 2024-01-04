@@ -1,0 +1,39 @@
+---
+openapi: 3.0.3
+
+info:
+  title: Test project
+  version: 1.0.0
+
+tags:
+  - name: Judgments
+    description: Judgments
+paths:
+  /api/judgments:
+    get:
+      tags:
+        - judgments
+      summary: Judgments list
+      operationId: getJudgmentsList
+      parameters:
+        - $ref: ./parameters/query/judgeName.yaml
+      responses:
+        '200':
+          description: A successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    caseNumber:
+                      type: string
+                    decisionType:
+                      type: string
+                    content:
+                      type: string
+
+
+
+

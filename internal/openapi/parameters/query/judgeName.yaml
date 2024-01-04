@@ -1,0 +1,7 @@
+---
+name: judgeName
+in: query
+description: Name of judge
+required: true
+schema:
+  type: string

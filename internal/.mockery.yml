@@ -1,0 +1,15 @@
+---
+quiet: false
+disable-version-string: true
+with-expecter: true
+dir: "mocks/{{.PackagePath}}"
+mockname: "Mock{{.InterfaceName}}"
+filename: "mock_{{.InterfaceNameSnake}}.go"
+outpkg: "mocks"
+packages:
+  judge-opinioner/domain/judgment/service:
+    interfaces:
+      JudgeAI:
+  judge-opinioner/infrastructure/client:
+    interfaces:
+      HttpClientInterface:
