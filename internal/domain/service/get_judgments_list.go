@@ -5,7 +5,7 @@ import (
 	"errors"
 	"os"
 
-	"judge-opinioner/infrastructure/client"
+	"judge-opinioner/internal/infrastructure/client"
 )
 
 var (

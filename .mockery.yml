@@ -7,9 +7,9 @@ mockname: "Mock{{.InterfaceName}}"
 filename: "mock_{{.InterfaceNameSnake}}.go"
 outpkg: "mocks"
 packages:
-  judge-opinioner/domain/judgment/service:
+  judge-opinioner/internal/domain/judgment/service:
     interfaces:
       JudgeAI:
-  judge-opinioner/infrastructure/client:
+  judge-opinioner/internal/infrastructure/client:
     interfaces:
       HttpClientInterface:

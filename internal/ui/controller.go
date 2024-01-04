@@ -3,8 +3,8 @@ package ui
 import (
 	"net/http"
 
-	"judge-opinioner/application/command_handler"
-	"judge-opinioner/infrastructure/server"
+	"judge-opinioner/internal/application/command_handler"
+	"judge-opinioner/internal/infrastructure/server"
 
 	"github.com/labstack/echo/v4"
 	log "github.com/sirupsen/logrus"

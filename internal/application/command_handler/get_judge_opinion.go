@@ -1,6 +1,6 @@
 package command_handler
 
-import "judge-opinioner/domain/judgment/service"
+import "judge-opinioner/internal/domain/service"
 
 type GetJudgeOpinionCommand struct {
 	JudgeName string

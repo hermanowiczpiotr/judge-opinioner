@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
-	"judge-opinioner/application/command_handler"
-	"judge-opinioner/domain/judgment/service"
-	"judge-opinioner/infrastructure"
-	"judge-opinioner/infrastructure/client"
-	"judge-opinioner/infrastructure/logs"
-	"judge-opinioner/ui"
+	"judge-opinioner/internal/application/command_handler"
+	"judge-opinioner/internal/domain/service"
+	"judge-opinioner/internal/infrastructure"
+	"judge-opinioner/internal/infrastructure/client"
+	"judge-opinioner/internal/infrastructure/logs"
+	"judge-opinioner/internal/ui"
 
 	log "github.com/sirupsen/logrus"
 )
