@@ -53,7 +53,7 @@ func TestJudgmentService_GetListOfJudgments(t *testing.T) {
 	}`
 	jsonData := []byte(jsonStr)
 
-	httpClient.On("GET", endpoint, mockedParams).Return(jsonData, nil)
+	httpClient.On("GET", searchEndpoint, mockedParams).Return(jsonData, nil)
 
 	judgmentService := JudgmentService{httpClient: httpClient}
 

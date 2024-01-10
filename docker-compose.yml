@@ -1,27 +1,15 @@
 version: "3"
 
 services:
-  mongodb:
-    image: mongo:6-jammy
-    ports:
-      - '27017:27017'
-    volumes:
-      - dbdata6:/data/db
-
 
   gateway:
     build: .
     volumes:
-      - ./internal:/internal
+      - .:/app
     ports:
       - 8001:8001
     environment:
       - PORT=8001
-      - MONGODB_URI=mongodb://mongodb:27017/wise-cart
-    working_dir: /internal/
+    working_dir: /app
     env_file:
       - .env
-    depends_on:
-      - mongodb
-volumes:
-  dbdata6: {}

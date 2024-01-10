@@ -10,17 +10,24 @@ import (
 	"judge-opinioner/internal/infrastructure/logs"
 	"judge-opinioner/internal/ui"
 
+	"github.com/joho/godotenv"
 	log "github.com/sirupsen/logrus"
 )
 
 func main() {
 	logs.Init()
 	log.Info("starting JUDGE-OPINIONER")
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
+	log.Errorf("dipa")
 	openaiService, err := service.NewGoogleAiService(
 		os.Getenv("GOOGLE_AI_PROJECT_ID"),
 		os.Getenv("GOOGLE_AI_LOCATION"),
 		os.Getenv("GOOGLE_AI_MODEL"),
+		os.Getenv("GOOGLE_TOKEN"),
 	)
 
 	controller := ui.NewController(command_handler.NewGetJudgeOpinionCommandHandler(

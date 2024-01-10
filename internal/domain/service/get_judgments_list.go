@@ -4,12 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"os"
+	"strconv"
 
 	"judge-opinioner/internal/infrastructure/client"
-)
-
-var (
-	endpoint = os.Getenv("SAOS_URL") + "/api/search/judgments"
 )
 
 type JudgmentService struct {
@@ -20,6 +17,9 @@ type Judgment struct {
 	Id          int    `json:"id"`
 	TextContent string `json:"textContent"`
 	JudgeName   string `json:"judgeName"`
+	CourtCases  []struct {
+		CaseNumber string `json:"caseNumber"`
+	} `json:"courtCases"`
 }
 
 type JudgmentsList struct {
@@ -40,7 +40,7 @@ func (service JudgmentService) GetListOfJudgments(judgeName string) ([]*Judgment
 	queryParams["judgeName"] = judgeName
 	queryParams["sortingField"] = "JUDGMENT_DATE"
 	queryParams["sortingDirection"] = "DESC"
-	body, err := service.httpClient.GET(endpoint, queryParams)
+	body, err := service.httpClient.GET(os.Getenv("SAOS_URL")+"/api/search/judgments", queryParams)
 	var list JudgmentsList
 
 	if err != nil {
@@ -58,4 +58,29 @@ func (service JudgmentService) GetListOfJudgments(judgeName string) ([]*Judgment
 	}
 
 	return list.Items, nil
+}
+
+func (service JudgmentService) GetSpecificJudgment(judgment *Judgment) (*Judgment, error) {
+	queryParams := make(map[string]string)
+
+	type specificJudgmentResponse struct {
+		Data *Judgment `json:"data"`
+	}
+
+	var sp specificJudgmentResponse
+
+	body, err := service.httpClient.GET(os.Getenv("SAOS_URL")+"/api/judgments/"+strconv.Itoa(judgment.Id), queryParams)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	err = json.Unmarshal(body, &sp)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return sp.Data, nil
 }
