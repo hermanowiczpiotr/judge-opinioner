@@ -4,11 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
 	"regexp"
 
 	"cloud.google.com/go/vertexai/genai"
 	"github.com/labstack/gommon/log"
-	"golang.org/x/oauth2"
 	"google.golang.org/api/option"
 )
 
@@ -16,15 +16,18 @@ type GoogleAiService struct {
 	generativeModel *genai.GenerativeModel
 }
 
-func NewGoogleAiService(projectID string, location string, model string, token string) (GoogleAiService, error) {
-	tokenSource := oauth2.StaticTokenSource(&oauth2.Token{
-		AccessToken: token,
-	})
+func NewGoogleAiService(projectID string, location string, model string, tokenPath string) (GoogleAiService, error) {
+
+	serviceAccountKey, err := os.ReadFile(tokenPath)
+	if err != nil {
+		log.Fatalf("Unable to read service account key file: %v", err)
+	}
+
 	gc, err := genai.NewClient(
 		context.TODO(),
 		projectID,
 		location,
-		option.WithTokenSource(tokenSource),
+		option.WithCredentialsJSON(serviceAccountKey),
 	)
 
 	if err != nil {
@@ -33,7 +36,6 @@ func NewGoogleAiService(projectID string, location string, model string, token s
 
 	modelClient := gc.GenerativeModel(model)
 
-	log.Error(modelClient)
 	return GoogleAiService{generativeModel: modelClient}, nil
 }
 
@@ -55,6 +57,7 @@ func (openai GoogleAiService) AskAboutJudge(judgeName string, caseDescription st
 	resp, err := openai.generativeModel.GenerateContent(context.Background(), prompt)
 
 	if err != nil {
+		log.Info(err)
 		return "", err
 	}
 	log.Info(resp)

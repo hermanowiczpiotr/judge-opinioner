@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: judge-opinioner-config
+data:
+  PORT: "8001"
+  SAOS_URL: "http://www.saos.org.pl"
+  GOOGLE_AI_PROJECT_ID: "eternal-calling-408522"
+  GOOGLE_AI_LOCATION: "us-central1"
+  GOOGLE_AI_MODEL: "gemini-pro-vision"
+  GOOGLE_APPLICATION_CREDENTIALS: "/var/secrets/google/key.json"

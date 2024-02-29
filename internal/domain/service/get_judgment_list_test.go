@@ -3,7 +3,7 @@ package service
 import (
 	"testing"
 
-	mocks "judge-opinioner/mocks/judge-opinioner/infrastructure/client"
+	mocks "judge-opinioner/internal/mocks/judge-opinioner/infrastructure/client"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

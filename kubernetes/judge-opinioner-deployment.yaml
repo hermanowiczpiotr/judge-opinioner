@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: judge-opinioner-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: judge-opinioner
+  template:
+    metadata:
+      labels:
+        app: judge-opinioner
+    spec:
+      containers:
+        - name: judge-opinioner
+          image: gcr.io/eternal-calling-408522/judge-opinioner:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8001
+          envFrom:
+            - configMapRef:
+                name: judge-opinioner-config
+          volumeMounts:
+            - name: gcp-key
+              mountPath: /var/secrets/google
+              readOnly: true
+          workingDir: /app
+      volumes:
+        - name: gcp-key
+          secret:
+            secretName: my-gcp-secret

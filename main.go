@@ -22,12 +22,11 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	log.Errorf("dipa")
 	openaiService, err := service.NewGoogleAiService(
 		os.Getenv("GOOGLE_AI_PROJECT_ID"),
 		os.Getenv("GOOGLE_AI_LOCATION"),
 		os.Getenv("GOOGLE_AI_MODEL"),
-		os.Getenv("GOOGLE_TOKEN"),
+		os.Getenv("GOOGLE_APPLICATION_CREDENTIALS"),
 	)
 
 	controller := ui.NewController(command_handler.NewGetJudgeOpinionCommandHandler(

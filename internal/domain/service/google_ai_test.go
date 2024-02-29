@@ -7,7 +7,7 @@ import (
 )
 
 func TestNewGoogleAiService(t *testing.T) {
-	service, err := NewGoogleAiService("test", "test", "test")
+	service, err := NewGoogleAiService("test", "test", "test", "test")
 
 	assert.NoError(t, err)
 

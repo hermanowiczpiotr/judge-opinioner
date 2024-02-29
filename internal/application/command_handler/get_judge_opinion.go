@@ -102,6 +102,7 @@ func (h GetJudgeOpinionCommandHandler) Handle(command GetJudgeOpinionCommand) ([
 			break // Break the loop when both channels are closed
 		}
 	}
+
 	return listOfOpinions, nil
 
 }

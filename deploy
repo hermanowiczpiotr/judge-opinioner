@@ -1,0 +1,4 @@
+kubectl apply -f judge-opinioner-deployment.yaml
+
+docker buildx build --platform linux/amd64 -t gcr.io/eternal-calling-408522/judge-opinioner:v1 --push .
+                                                                                                                   d

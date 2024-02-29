@@ -7,6 +7,8 @@ import (
 	"judge-opinioner/internal/infrastructure/server"
 	"judge-opinioner/internal/ui"
 
+	internal_middlawere "judge-opinioner/internal/infrastructure/middleware"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -20,6 +22,7 @@ func NewRouter(controller ui.Controller) *Router {
 	e := echo.New()
 	e.Use(corsMiddleware())
 
+	e.Use(internal_middlawere.JwtMiddleware)
 	server.RegisterHandlers(e, controller)
 
 	return &Router{
