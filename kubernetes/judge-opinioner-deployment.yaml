@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: judge-opinioner
-          image: gcr.io/eternal-calling-408522/judge-opinioner:v1
+          image: casefy/judge-opinioner:alfa
           imagePullPolicy: Always
           ports:
             - containerPort: 8001
@@ -29,4 +29,4 @@ spec:
       volumes:
         - name: gcp-key
           secret:
-            secretName: my-gcp-secret
+            secretName: my-secret

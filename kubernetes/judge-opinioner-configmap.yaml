@@ -8,4 +8,4 @@ data:
   GOOGLE_AI_PROJECT_ID: "eternal-calling-408522"
   GOOGLE_AI_LOCATION: "us-central1"
   GOOGLE_AI_MODEL: "gemini-pro-vision"
-  GOOGLE_APPLICATION_CREDENTIALS: "/var/secrets/google/key.json"
+  GOOGLE_APPLICATION_CREDENTIALS: "/var/secrets/google/google_token.json"
